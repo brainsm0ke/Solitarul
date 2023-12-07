@@ -1,3 +1,0 @@
-C:/Users/adi/Proiecte/Solitarul/build/CMakeFiles/bin.dir
-C:/Users/adi/Proiecte/Solitarul/build/CMakeFiles/edit_cache.dir
-C:/Users/adi/Proiecte/Solitarul/build/CMakeFiles/rebuild_cache.dir

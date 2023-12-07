@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/adi/Proiecte/Solitarul/build",
-  "command": "C:\\TDM-GCC-32\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\bin.dir\\main.cpp.obj -c C:\\Users\\adi\\Proiecte\\Solitarul\\main.cpp",
-  "file": "C:/Users/adi/Proiecte/Solitarul/main.cpp",
-  "output": "CMakeFiles/bin.dir/main.cpp.obj"
-}
-]
