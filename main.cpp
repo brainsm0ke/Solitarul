@@ -9,7 +9,7 @@ int main()
 {
     int w = 800, h = 600;
     initwindow(w,h);
-    rectangle();
+    rectangle(100,100,200,200);
     getch();
     closegraph();
     return 0;
