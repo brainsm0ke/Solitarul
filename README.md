@@ -13,7 +13,7 @@ Din nefericire trebuie facute modificari la kit, altfel da eroarea `Unable to de
 ```
 "preferredGenerator": {
       "name": "MinGW Makefiles"
-    },
+},
 ```
 in kit-ul respectiv.
 
