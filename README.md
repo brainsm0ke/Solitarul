@@ -9,7 +9,7 @@ De asemenea trebuie instalat [CMake](https://cmake.org/).
 Trebuie instalata extensia _CMake_ si _CMake Tools_ pentru VS Code.
 Dupa instalarea extensiilor apasati **Ctrl+Shift+P** si selectati `CMake: Scan for kits` , acesta va genera automat kituri pentru proiect, pentru TDM-GCC va genera kit-ul cu nume _"GCC **versiune** mingw32"_
 
-Din nefericire trebuie facute modificari ai kituri, altfel da eroarea `Unable to determine what CMake generator to use`. Apasati din nou **Ctrl+Shift+P** si selectati `CMake: Edit User-Local CMake Kits`, va aparea un tab nou numit _cmake-tools-kits.json_, adaugati:
+Din nefericire trebuie facute modificari la kit, altfel da eroarea `Unable to determine what CMake generator to use`. Apasati din nou **Ctrl+Shift+P** si selectati `CMake: Edit User-Local CMake Kits`, va aparea un tab nou numit _cmake-tools-kits.json_, adaugati:
 ```
 "preferredGenerator": {
       "name": "MinGW Makefiles"
