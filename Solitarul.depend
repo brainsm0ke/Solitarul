@@ -1,6 +1,0 @@
-# depslib dependency file v1.0
-1701929644 source:c:\users\adi\codeblocks\solitarul\main.cpp
-	<iostream>
-	<graphics.h>
-	<winbgim.h>
-

@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\bin.exe.dir/objects.a
+C:\TDM-GCC-32\bin\ar.exe qc CMakeFiles\bin.exe.dir/objects.a @CMakeFiles\bin.exe.dir\objects1.rsp
+C:\TDM-GCC-32\bin\g++.exe -g -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32 -Wl,--whole-archive CMakeFiles\bin.exe.dir/objects.a -Wl,--no-whole-archive -o bin.exe.exe -Wl,--out-implib,libbin.exe.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\bin.exe.dir\linkLibs.rsp

@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.25)
+
+project(Solitarul)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED true)
+
+add_executable(bin main.cpp)
+
+target_link_libraries(bin bgi gdi32 comdlg32 uuid oleaut32 ole32)
