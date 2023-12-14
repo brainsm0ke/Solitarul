@@ -98,6 +98,9 @@ int main()
         else
             TablaDeJoc[i][j]=0;
      }
+     for (i=1; i<=numar; i++)
+     for (j=1; j<=numar; j++)
+     {
      if(TablaDeJoc[i][j] == 1)
      {
          if((TablaDeJoc[i - 1][j] == 1 && TablaDeJoc[i - 2][j] == 0)||(TablaDeJoc[i + 1][j] == 1 && TablaDeJoc[i + 2][j] == 0)||(TablaDeJoc[i][j - 1] == 1 && TablaDeJoc[i][j - 2] == 0)||(TablaDeJoc[i][j + 1] == 1 && TablaDeJoc[i][j + 2] == 0))
@@ -107,6 +110,7 @@ int main()
        mutarePiesa(1);
     } while (!castigat(1) && !castigat(2));
          }
+     }
      }
    getch();
    closegraph();
