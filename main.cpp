@@ -1,6 +1,10 @@
 #include <iostream>
 #include <winbgim.h>
 #include <stdlib.h>
+#include <windows.h>
+#include<mmsystem.h>
+#include <sstream>
+#include <string.h>
 
 #define MAX 25
 #define CUL 1
@@ -21,7 +25,7 @@ struct TablaDeJoc {
     int width;
     int height;
 };
-
+int scor;
 void deseneazaPiesa(TablaDeJoc TablaDeJoc, int linia, int coloana, int cul)
 {
     int x1, y1, x2, y2;
@@ -53,6 +57,7 @@ void desen(TablaDeJoc TablaDeJoc)
                 rectangle(stanga + latura * (i - 1),sus + latura * (j - 1),stanga + latura * i,sus + latura * j);
                 if(TablaDeJoc.loc[i][j] == tipLoc::piesa) deseneazaPiesa(TablaDeJoc, i, j, CUL);
             }
+            scor = 0;
 }
 
 void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
@@ -123,7 +128,17 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
             }
         }
     }
- }
+}
+
+void afisareScor()
+{
+  stringstream strs;
+  strs << scor;
+  string temp_str = strs.str();
+  char* char_scor = (char*) temp_str.c_str();
+    settextstyle(8, 0, 5);
+      outtextxy(20, 10 ,char_scor);
+}
 
 bool castigat(int jucator)
 {
@@ -136,7 +151,7 @@ int main()
     T.n = 7;
     T.width = 400;
     T.height = 400;
-    initwindow(800,600);
+    initwindow(800,600,"Solitar");
     for (int i=1; i<=T.n; i++)
     for (int j=1; j<=T.n; j++)
     {
@@ -147,13 +162,15 @@ int main()
         else T.loc[i][j]=tipLoc::gol;
     }
     desen(T);
+   PlaySound("Background.wav", NULL, SND_ASYNC | SND_NOSTOP);
     do
     {
        mutarePiesa(T, 1);
+        scor++;
+       afisareScor();
     } while (!castigat(1) && !castigat(2));
    getch();
    closegraph();
    return 0;
 }
-
 
