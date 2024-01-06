@@ -5,13 +5,11 @@
 #include<mmsystem.h>
 #include <sstream>
 #include <string.h>
-
+using namespace std;
 #define MAX 25
 #define CUL 1
 #define CUL_SEL 4
 #define BKG 14
-
-using namespace std;
 
 enum tipLoc {
     invalid,
@@ -41,8 +39,7 @@ void deseneazaPiesa(TablaDeJoc TablaDeJoc, int linia, int coloana, int cul)
     setcolor(cul); setfillstyle(SOLID_FILL,cul);
     fillellipse(xmijloc,ymijloc,18,18);
 }
-
-void desen(TablaDeJoc TablaDeJoc)
+    void desen(TablaDeJoc TablaDeJoc)
 {
     int i,j;
     int latura = TablaDeJoc.width/TablaDeJoc.n;
@@ -59,7 +56,6 @@ void desen(TablaDeJoc TablaDeJoc)
             }
             scor = 0;
 }
-
 void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
 {
     int linia1,coloana1,linia2,coloana2,x,y;
@@ -130,24 +126,9 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
         }
     }
 }
-
-void afisareScor()
-{
-  stringstream strs;
-  strs << scor;
-  string temp_str = strs.str();
-  char* char_scor = (char*) temp_str.c_str();
-    settextstyle(8, 0, 5);
-      outtextxy(20, 10 ,char_scor);
-}
-
-bool castigat(int jucator)
-{
-    return false;
-}
-
 int main()
 {
+
     TablaDeJoc T;
     T.n = 7;
     T.width = 400;
@@ -164,12 +145,8 @@ int main()
     }
     desen(T);
    PlaySound("Background.wav", NULL, SND_ASYNC | SND_NOSTOP);
-   afisareScor();
-    do
-    {
-       mutarePiesa(T, 1);
-       afisareScor();
-    } while (!castigat(1) && !castigat(2));
+   mutarePiesa(T,1);
+   Sleep(500);
     cleardevice();
    setbkcolor(BKG);
     cleardevice();
@@ -178,6 +155,4 @@ int main()
     outtextxy(70, 300, "Felicitari! Ai terminat jocul!");
    getch();
    closegraph();
-   return 0;
 }
-
