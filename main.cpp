@@ -78,6 +78,7 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
     while (!click);
     if(TablaDeJoc.loc[linia1][coloana1] == tipLoc::piesa){
         deseneazaPiesa(TablaDeJoc,linia1,coloana1,CUL_SEL);
+            scor++;
         click=false;
         do
             if(ismouseclick(WM_LBUTTONDOWN) && !click)
@@ -163,12 +164,18 @@ int main()
     }
     desen(T);
    PlaySound("Background.wav", NULL, SND_ASYNC | SND_NOSTOP);
+   afisareScor();
     do
     {
        mutarePiesa(T, 1);
-        scor++;
        afisareScor();
     } while (!castigat(1) && !castigat(2));
+    cleardevice();
+   setbkcolor(BKG);
+    cleardevice();
+    settextstyle(8, 0, 4);
+    setcolor(1);
+    outtextxy(70, 300, "Felicitari! Ai terminat jocul!");
    getch();
    closegraph();
    return 0;
