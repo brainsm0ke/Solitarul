@@ -126,6 +126,7 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
         }
     }
 }
+
 int main()
 {
 
