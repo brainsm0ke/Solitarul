@@ -203,7 +203,6 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
     if(TablaDeJoc.loc[linia1][coloana1] == tipLoc::piesa)
     {
         deseneazaPiesa(TablaDeJoc,linia1,coloana1,CUL_SEL);
-        scor++;
         click=false;
         do
             if(ismouseclick(WM_LBUTTONDOWN) && !click)
@@ -223,6 +222,7 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
             {
                 if (linia1+2 == linia2 && TablaDeJoc.loc[linia1+1][coloana1] == tipLoc::piesa)
                 {
+                    scor++;
                     TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                     deseneazaPiesa(TablaDeJoc,linia1, coloana1, BKG);
                     TablaDeJoc.loc[linia1+1][coloana1] = tipLoc::gol;
@@ -232,6 +232,7 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
                 }
                 else if(linia1-2 == linia2 && TablaDeJoc.loc[linia1-1][coloana1] == tipLoc::piesa)
                 {
+                    scor++;
                     TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                     deseneazaPiesa(TablaDeJoc,linia1, coloana1, BKG);
                     TablaDeJoc.loc[linia1-1][coloana1] = tipLoc::gol;
@@ -244,6 +245,7 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
             {
                 if(coloana1+2 == coloana2 && TablaDeJoc.loc[linia1][coloana1+1] == tipLoc::piesa)
                 {
+                    scor++;
                     TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                     deseneazaPiesa(TablaDeJoc,linia1, coloana1, BKG);
                     TablaDeJoc.loc[linia1][coloana1+1] = tipLoc::gol;
@@ -253,6 +255,7 @@ void mutarePiesa(TablaDeJoc &TablaDeJoc, int  jucator)
                 }
                 else if(coloana1-2 == coloana2 && TablaDeJoc.loc[linia1][coloana1-1] == tipLoc::piesa)
                 {
+                    scor++;
                     TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                     deseneazaPiesa(TablaDeJoc,linia1, coloana1, BKG);
                     TablaDeJoc.loc[linia1][coloana1-1] = tipLoc::gol;
