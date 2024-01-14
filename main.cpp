@@ -82,15 +82,15 @@ void showMenu(int &startx1, int &starty1, int &startx2, int &starty2, int &rules
     int buttonWidth = 200;
     int buttonHeight = 100;
 
-    rulesx1 = 0;
-    rulesy1 = 0;
+    rulesx1 = 10;
+    rulesy1 = 10;
     rulesx2 = rulesx1 + buttonWidth + 100;
     rulesy2 = rulesy1 + buttonHeight + 100;
     outtextxy(rulesx1 + 70, rulesy1 + 15, "How to play");
 
 
-    startx1 = (windowWidth - buttonWidth) / 2;
-    starty1 = (windowHeight - buttonHeight) / 2 - 60;
+    startx1 = (windowWidth - buttonWidth) / 2 - 50;
+    starty1 = (windowHeight - buttonHeight) / 2 - 20;
     startx2 = startx1 + buttonWidth + 100;
     starty2 = starty1 + buttonHeight + 100;
 
@@ -110,8 +110,8 @@ void showMenu2(int &engx1, int &engy1, int &engx2, int &engy2, int &rox1, int &r
     int buttonWidth = 200;
     int buttonHeight = 50;
 
-    engx1 = (windowWidth - buttonWidth) / 4 + 50;
-    engy1 = (windowHeight - buttonHeight) / 2 - 60;
+    engx1 = (windowWidth - buttonWidth) / 4 + 80;
+    engy1 = (windowHeight - buttonHeight) / 2 - 100;
     engx2 = engx1 + buttonWidth;
     engy2 = engy1 + buttonHeight;
     outtextxy(engx1 + 70, engy1 + 15, "English");
@@ -136,7 +136,7 @@ void showMenu3(int &onepx1, int &onepy1, int &onepx2, int &onepy2, int &twopx1, 
     int buttonHeight = 50;
 
     onepx1 = (windowWidth - buttonWidth) / 4 + 50;
-    onepy1 = (windowHeight - buttonHeight) / 2 - 60;
+    onepy1 = (windowHeight - buttonHeight) / 2 - 100;
     onepx2 = onepx1 + buttonWidth;
     onepy2 = onepy1 + buttonHeight;
     outtextxy(onepx1 + 70, onepy1 + 15, "1 player");
@@ -161,19 +161,19 @@ void showMenu4(int &t1x1, int &t1y1, int &t1x2, int &t1y2, int &t2x1, int &t2y1,
     int buttonHeight = 50;
 
     t1x1 = (windowWidth - buttonWidth) / 3 + 40;
-    t1y1 = (windowHeight - buttonHeight) / 2 - 80;
+    t1y1 = (windowHeight - buttonHeight) / 2 - 130;
     t1x2 = t1x1 + buttonWidth;
     t1y2 = t1y1 + buttonHeight;
     outtextxy(t1x1 + 70, t1y1 + 15, "Tabla 1");
 
     t2x1 = t1x1;
-    t2y1 = t1y2 + 20;
+    t2y1 = t1y2 + 50;
     t2x2 = t2x1 + buttonWidth;
     t2y2 = t2y1 + buttonHeight;
     outtextxy(t2x1 + 70, t2y1 + 15, "Tabla 2");
 
     t3x1 = t2x1;
-    t3y1 = t2y2 + 20;
+    t3y1 = t2y2 + 50;
     t3x2 = t3x1 + buttonWidth;
     t3y2 = t3y1 + buttonHeight;
     outtextxy(t3x1 + 70, t3y1 + 15, "Tabla 3");
@@ -615,15 +615,15 @@ int main()
                                             char *rules8 = "ultima mutare(chiar daca nu s-a indeplinit conditia de castig ";
                                             char *rules9 = "de mai sus).";
                                             settextstyle(8, 0, 2);
-                                            outtextxy(10, 10, rules1);
-                                            outtextxy(0, 50, rules2);
-                                            outtextxy(0, 90, rules3);
-                                            outtextxy(0, 130, rules4);
-                                            outtextxy(0, 170, rules5);
-                                            outtextxy(0, 210, rules6);
-                                            outtextxy(10, 250, rules7);
-                                            outtextxy(0, 290, rules8);
-                                            outtextxy(0, 330, rules9);
+                                            outtextxy(30, 50, rules1);
+                                            outtextxy(10, 90, rules2);
+                                            outtextxy(10, 130, rules3);
+                                            outtextxy(10, 170, rules4);
+                                            outtextxy(10, 210, rules5);
+                                            outtextxy(10, 250, rules6);
+                                            outtextxy(30, 290, rules7);
+                                            outtextxy(10, 330, rules8);
+                                            outtextxy(10, 370, rules9);
 
                                         }
                                         if (isInsideButton(x2, y2, engx1, engy1, engx2, engy2))
@@ -640,14 +640,14 @@ int main()
                                             char *rules7 = "the last move wins (even if the winning condition above has not ";
                                             char *rules8 = "been met).";
                                             settextstyle(8, 0, 2);
-                                            outtextxy(10, 10, rules1);
-                                            outtextxy(0, 50, rules2);
-                                            outtextxy(0, 90, rules3);
-                                            outtextxy(0, 130, rules4);
-                                            outtextxy(0, 170, rules5);
-                                            outtextxy(10, 210, rules6);
-                                            outtextxy(0, 250, rules7);
-                                            outtextxy(0, 290, rules8);
+                                            outtextxy(30, 50, rules1);
+                                            outtextxy(10, 90, rules2);
+                                            outtextxy(10, 130, rules3);
+                                            outtextxy(10, 170, rules4);
+                                            outtextxy(10, 210, rules5);
+                                            outtextxy(30, 250, rules6);
+                                            outtextxy(10, 290, rules7);
+                                            outtextxy(10, 330, rules8);
 
                                         }
                                     }
