@@ -62,7 +62,9 @@ bool isInsideButton(int x, int y, int left, int top, int right, int bottom)
 {
     return (x >= left && x <= right && y >= top && y <= bottom);
 }
-bool mutarePiesa(TablaDeJoc &TablaDeJoc, int jucator, int& scor)
+
+
+bool mutarePiesa(TablaDeJoc &TablaDeJoc, int jucator)
 {
     int linia1,coloana1,linia2,coloana2,x,y;
     int latura = TablaDeJoc.width/TablaDeJoc.n;
@@ -135,7 +137,6 @@ bool mutarePiesa(TablaDeJoc &TablaDeJoc, int jucator, int& scor)
                 if(linia1 < TablaDeJoc.n-1){
                     if (linia1+2 == linia2 && TablaDeJoc.loc[linia1+1][coloana1] == tipLoc::piesa)
                     {
-                        scor++;
                         TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                         TablaDeJoc.loc[linia1+1][coloana1] = tipLoc::gol;
                         TablaDeJoc.loc[linia2][coloana2] = tipLoc::piesa;
@@ -145,7 +146,6 @@ bool mutarePiesa(TablaDeJoc &TablaDeJoc, int jucator, int& scor)
                 if(linia1 > 1){
                     if(linia1-2 == linia2 && TablaDeJoc.loc[linia1-1][coloana1] == tipLoc::piesa)
                     {
-                        scor++;
                         TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                         TablaDeJoc.loc[linia1-1][coloana1] = tipLoc::gol;
                         TablaDeJoc.loc[linia2][coloana2] = tipLoc::piesa;
@@ -158,7 +158,6 @@ bool mutarePiesa(TablaDeJoc &TablaDeJoc, int jucator, int& scor)
                 if(coloana1 < TablaDeJoc.n-1){
                     if(coloana1+2 == coloana2 && TablaDeJoc.loc[linia1][coloana1+1] == tipLoc::piesa)
                     {
-                        scor++;
                         TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                         TablaDeJoc.loc[linia1][coloana1+1] = tipLoc::gol;
                         TablaDeJoc.loc[linia2][coloana2] = tipLoc::piesa;
@@ -168,7 +167,6 @@ bool mutarePiesa(TablaDeJoc &TablaDeJoc, int jucator, int& scor)
                 if(coloana1 > 1){
                     if(coloana1-2 == coloana2 && TablaDeJoc.loc[linia1][coloana1-1] == tipLoc::piesa)
                     {
-                        scor++;
                         TablaDeJoc.loc[linia1][coloana1] = tipLoc::gol;
                         TablaDeJoc.loc[linia1][coloana1-1] = tipLoc::gol;
                         TablaDeJoc.loc[linia2][coloana2] = tipLoc::piesa;
@@ -179,24 +177,6 @@ bool mutarePiesa(TablaDeJoc &TablaDeJoc, int jucator, int& scor)
         }
     }
     return false;
-}
-
-void afisareScor(const int jucator, const int scor, text& text)
-{
-    stringstream strs;
-    strs << scor;
-    string temp_str = strs.str();
-    char* char_scor = (char*) temp_str.c_str();
-    settextstyle(4, 0, 4);
-    if(jucator == 1){
-        setcolor(BLUE);
-        outtextxy(20, 20, text.juc1);
-        outtextxy(20, 20+textheight(text.juc1), char_scor);
-    } else if (jucator == 2) {
-        setcolor(RED);
-        outtextxy(getmaxx()-20-textwidth(text.juc1),20, text.juc2);
-        outtextxy(getmaxx()-20-textwidth(text.juc1),20+textheight(text.juc2), char_scor);
-    }
 }
 
 bool mutariDisponibile(TablaDeJoc T){
@@ -234,7 +214,6 @@ void startJoc(TablaDeJoc T, int nr_jucatori, text& text) {
     clearviewport();
     bool ok;
     if(nr_jucatori == 1){
-        int scor = 0;
         PlaySound("Background.wav", NULL, SND_ASYNC | SND_NOSTOP);
         do
         {     
@@ -244,52 +223,66 @@ void startJoc(TablaDeJoc T, int nr_jucatori, text& text) {
             } else {
                     readimagefile("sound-on.bmp", getmaxx()-50, getmaxy()-50, getmaxx(), getmaxy());
             }
-            ok = mutarePiesa(T, 1, scor);
-            while(!ok) {ok = mutarePiesa(T, 1, scor);}
+            ok = mutarePiesa(T, 1);
+            while(!ok) {ok = mutarePiesa(T, 1);}
         }
         while (mutariDisponibile(T));
+        deseneazaTabla(T,1);
+        if(sunet == false){
+                readimagefile("sound-off.bmp", getmaxx()-50, getmaxy()-50, getmaxx(), getmaxy());
+        } else {
+                readimagefile("sound-on.bmp", getmaxx()-50, getmaxy()-50, getmaxx(), getmaxy());
+        }
         if(castigat(T)){
             setcolor(GREEN);
             settextstyle(4,0,4);
-            outtextxy((getmaxx()-textwidth(text.ai_castigat))/2, getmaxy(), text.ai_castigat);
+            outtextxy((getmaxx()-textwidth(text.ai_castigat))/2, getmaxy()-textheight(text.ai_castigat), text.ai_castigat);
         } else {
             setcolor(RED);
             settextstyle(4,0,4);
-            outtextxy((getmaxx()-textwidth(text.ai_pierdut))/2, getmaxy(), text.ai_pierdut);
+            outtextxy((getmaxx()-textwidth(text.ai_castigat))/2, getmaxy()-textheight(text.ai_pierdut), text.ai_pierdut);
         }
         while(!ismouseclick(WM_LBUTTONDOWN));
     } else if(nr_jucatori == 2){
-        int scor[2] = {0};
-        int jucator_curent = 1;
+        int jucator_curent = 2;
         PlaySound("Background.wav", NULL, SND_ASYNC | SND_NOSTOP);
         do
         {
+            if(jucator_curent == 1){
+                jucator_curent = 2;
+            }
+            else if(jucator_curent == 2){
+                jucator_curent = 1;
+            }
             deseneazaTabla(T,jucator_curent);
-            afisareScor(1, scor[0], text);
-            afisareScor(2, scor[1], text);
+            if(jucator_curent == 1){
+                setcolor(BLUE);
+                outtextxy((getmaxx()-textwidth(text.juc1))/2,20,text.juc1);
+            } else if(jucator_curent == 2){
+                setcolor(RED);
+                outtextxy((getmaxx()-textwidth(text.juc2))/2,20,text.juc2);
+            }
             if(sunet == false){
                     readimagefile("sound-off.bmp", getmaxx()-50, getmaxy()-50, getmaxx(), getmaxy());
             } else {
                     readimagefile("sound-on.bmp", getmaxx()-50, getmaxy()-50, getmaxx(), getmaxy());
             }
-            ok = mutarePiesa(T, jucator_curent, scor[jucator_curent-1]);
-            while(!ok) {ok = mutarePiesa(T, jucator_curent, scor[jucator_curent-1]);}
-            if(jucator_curent == 1) jucator_curent = 2;
-            else if(jucator_curent == 2) jucator_curent = 1;
+            ok = mutarePiesa(T, jucator_curent);
+            while(!ok) {ok = mutarePiesa(T, jucator_curent);}
         }
         while (mutariDisponibile(T));
-        if(scor[0] > scor[1]) {
+        deseneazaTabla(T,jucator_curent);
+        if(jucator_curent == 1){
             setcolor(BLUE);
-            settextstyle(4,0,4);
-            outtextxy((getmaxx()-textwidth(text.juc1_castiga))/2, getmaxy(), text.juc1_castiga);
-        } else if(scor[1] > scor[0]){
+            outtextxy((getmaxx()-textwidth(text.juc1_castiga))/2, getmaxy()-textheight(text.juc1_castiga)-20,text.juc1_castiga);
+        } else if(jucator_curent == 2){
             setcolor(RED);
-            settextstyle(4,0,4);
-            outtextxy((getmaxx()-textwidth(text.juc2_castiga))/2, getmaxy(), text.juc2_castiga);
+            outtextxy((getmaxx()-textwidth(text.juc2_castiga))/2, getmaxy()-textheight(text.juc2_castiga)-20,text.juc2_castiga);
+        }
+        if(sunet == false){
+                readimagefile("sound-off.bmp", getmaxx()-50, getmaxy()-50, getmaxx(), getmaxy());
         } else {
-            setcolor(MAGENTA);
-            settextstyle(4,0,4);
-            outtextxy((getmaxx()-textwidth(text.egalitate))/2, getmaxy(), text.egalitate);
+                readimagefile("sound-on.bmp", getmaxx()-50, getmaxy()-50, getmaxx(), getmaxy());
         }
         while(!ismouseclick(WM_LBUTTONDOWN));
     }

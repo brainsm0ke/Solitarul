@@ -9,8 +9,6 @@ include_directories(include)
 
 add_executable(bin main.cpp joc.cpp tabla.cpp)
 
-target_compile_options(bin PUBLIC -fsanitize=address)
-
 target_link_libraries(bin bgi gdi32 comdlg32 uuid oleaut32 ole32 winmm)
 
 file(COPY resurse/Background.wav DESTINATION /)

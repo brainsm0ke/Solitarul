@@ -17,3 +17,5 @@ struct TablaDeJoc
 };
 
 void startJoc(TablaDeJoc T, int nr_jucatori, text& text);
+
+bool isInsideButton(int x, int y, int left, int top, int right, int bottom);
