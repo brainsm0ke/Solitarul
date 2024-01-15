@@ -5,6 +5,25 @@ project(Solitarul)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_executable(bin main.cpp)
+include_directories(include)
+
+add_executable(bin main.cpp joc.cpp tabla.cpp)
+
+target_compile_options(bin PUBLIC -fsanitize=address)
 
 target_link_libraries(bin bgi gdi32 comdlg32 uuid oleaut32 ole32 winmm)
+
+file(COPY resurse/Background.wav DESTINATION /)
+file(COPY resurse/RO.bmp DESTINATION /)
+file(COPY resurse/EN.bmp DESTINATION /)
+file(COPY resurse/Tabla1.jpg DESTINATION /)
+file(COPY resurse/Tabla1.txt DESTINATION /)
+file(COPY resurse/Tabla2.jpg DESTINATION /)
+file(COPY resurse/Tabla2.jpg DESTINATION /)
+file(COPY resurse/Tabla2.txt DESTINATION /)
+file(COPY resurse/Tabla3.jpg DESTINATION /)
+file(COPY resurse/Tabla3.txt DESTINATION /)
+file(COPY resurse/Tabla3.jpg DESTINATION /)
+file(COPY resurse/Tabla3.txt DESTINATION /)
+file(COPY "resurse/sound-on.bmp" DESTINATION /)
+file(COPY "resurse/sound-off.bmp" DESTINATION /)
