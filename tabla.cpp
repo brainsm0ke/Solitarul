@@ -1,3 +1,7 @@
+#include <windows.h>
+#include <commdlg.h>
+#include <winuser.h>
+
 #include <fstream>
 #include <iostream>
 
@@ -22,4 +26,20 @@ TablaDeJoc IncarcaTabla(char* path){
         }
     } else throw 0;
     return T;
+}
+
+void SelectareFisierTabla(char* c, text& text) {
+    OPENFILENAMEA ofn;
+    ofn.lStructSize = sizeof(OPENFILENAMEA);
+    ofn.hwndOwner = GetFocus();
+    ofn.lpstrFilter = "Text file (*.txt)\0*.txt\0\0";
+    ofn.lpstrCustomFilter = NULL;
+    ofn.lpstrFile = c;
+    ofn.nFilterIndex = 0;
+    ofn.nMaxFile = 100;
+    ofn.lpstrFileTitle = NULL;
+    ofn.nMaxFileTitle = 0;
+    ofn.lpstrTitle = text.alege_un_alt_tabel;
+    ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+    GetOpenFileNameA(&ofn);
 }

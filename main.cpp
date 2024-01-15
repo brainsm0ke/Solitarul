@@ -99,7 +99,6 @@ int main() {
     int nr_jucatori;
     bool ok = false;
     int x1,y1,x2,y2,x3,y3,x4,y4;
-    // Selectare Limba
     x1 = (getmaxx()-550)/2;
     y1 = (getmaxy()-150)/2;
     x2 = x1 + 300;
@@ -125,7 +124,7 @@ int main() {
 
     settextstyle(4,0,4);
     x1 = (getmaxx()-textwidth(text.un_jucator)-textwidth(text.doi_jucatori)-30)/2;
-    y1 = (getmaxy()-textheight("A"))/2;
+    y1 = (getmaxy()-textheight(text.un_jucator))/2;
     x2 = x1 + 30 + textwidth(text.doi_jucatori);
     y2 = y1;
     x3 = (getmaxx()-textwidth(text.reguli))/2;
@@ -142,36 +141,60 @@ int main() {
         outtextxy(x3,y3, text.reguli);
         while(!ismouseclick(WM_LBUTTONDOWN));
         clearmouseclick(WM_LBUTTONDOWN);
-        if(isInsideButton(mousex(),mousey(),x1,y1,x1+textwidth(text.un_jucator),y1+textheight("A"))){
+        if(isInsideButton(mousex(),mousey(),x1,y1,x1+textwidth(text.un_jucator),y1+textheight(text.un_jucator))){
             nr_jucatori = 1;
             ok = true;
-        } else if(isInsideButton(mousex(),mousey(),x2,y2,x2+textwidth(text.un_jucator),y2+textheight("A"))){
+        } else if(isInsideButton(mousex(),mousey(),x2,y2,x2+textwidth(text.doi_jucatori),y2+textheight(text.doi_jucatori))){
             nr_jucatori = 2;
             ok = true;
-        } else if(isInsideButton(mousex(),mousey(),x3,y3,x3+textwidth(text.reguli), y3+textheight("A"))){{
+        } else if(isInsideButton(mousex(),mousey(),x3,y3,x3+textwidth(text.reguli), y3+textheight(text.reguli))){{
             ReguliJoc(text);
-        }}
+        }
+        }
     }
     setbkcolor(LIGHTGRAY);
-    clearviewport();
 
+    settextstyle(4,0,4);
     x1 = (getmaxx()-200*3-60)/2;
     y1 = (getmaxy()-200)/2;
     x2 = x1 + 220;
     y2 = y1;
     x3 = x2 + 220;
     y3 = y2;
-
-    readimagefile("Tabla1.jpg", x1,y1,x1+200,y1+200);
-    readimagefile("Tabla2.jpg", x2,y2,x2+200, y2+200);
-    readimagefile("Tabla3.jpg", x3,y3,x3+200,y3+200);
-    while(!ismouseclick(WM_LBUTTONDOWN));
-    clearmouseclick(WM_LBUTTONDOWN);
-    if(isInsideButton(mousex(),mousey(),x1,y1,x1+200,y1+200)){
-        startJoc(IncarcaTabla("Tabla1.txt"), nr_jucatori, text);
-    } else if(isInsideButton(mousex(),mousey(),x2,y2,x2+200,y2+200)){
-        startJoc(IncarcaTabla("Tabla2.txt"), nr_jucatori, text);
-    } else if(isInsideButton(mousex(),mousey(),x3,y3,x3+200,y3+200)){
-        startJoc(IncarcaTabla("Tabla3.txt"), nr_jucatori, text);
+    x4 = (getmaxx()-textwidth(text.alege_un_alt_tabel))/2;
+    y4 = getmaxy()-textheight(text.alege_un_alt_tabel)-20;
+    ok = false;
+    while(!ok){
+        setbkcolor(LIGHTGRAY);
+        clearviewport();
+        setcolor(BLACK);
+        setbkcolor(WHITE);
+        outtextxy(x4,y4,text.alege_un_alt_tabel);
+        settextstyle(4,0,4);
+        readimagefile("Tabla1.jpg", x1,y1,x1+200,y1+200);
+        readimagefile("Tabla2.jpg", x2,y2,x2+200, y2+200);
+        readimagefile("Tabla3.jpg", x3,y3,x3+200,y3+200);
+        while(!ismouseclick(WM_LBUTTONDOWN));
+        clearmouseclick(WM_LBUTTONDOWN);
+        if(isInsideButton(mousex(),mousey(),x1,y1,x1+200,y1+200)){
+            startJoc(IncarcaTabla("Tabla1.txt"), nr_jucatori, text);
+            ok = true;
+        } else if(isInsideButton(mousex(),mousey(),x2,y2,x2+200,y2+200)){
+            startJoc(IncarcaTabla("Tabla2.txt"), nr_jucatori, text);
+            ok = true;
+        } else if(isInsideButton(mousex(),mousey(),x3,y3,x3+200,y3+200)){
+            startJoc(IncarcaTabla("Tabla3.txt"), nr_jucatori, text);
+            ok = true;
+        } else if(isInsideButton(mousex(),mousey(),x4,y4,
+        x4+textwidth(text.alege_un_alt_tabel), y4+textheight(text.alege_un_alt_tabel))){
+            char c[100];
+            SelectareFisierTabla(c, text);
+            if (c[0] == '\0'){
+                ok = false;
+            } else {
+                startJoc(IncarcaTabla(c), nr_jucatori, text);
+                ok = true;
+            }
+        }
     }
 }
