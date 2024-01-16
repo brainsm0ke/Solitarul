@@ -41,5 +41,7 @@ void SelectareFisierTabla(char* c, text& text) {
     ofn.nMaxFileTitle = 0;
     ofn.lpstrTitle = text.alege_un_alt_tabel;
     ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
-    GetOpenFileNameA(&ofn);
+    if(!GetOpenFileNameA(&ofn)){
+        c[0] = '\0';
+    }
 }

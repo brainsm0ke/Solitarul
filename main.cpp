@@ -1,13 +1,8 @@
 #include <iostream>
 #include <winbgim.h>
-#include <stdlib.h>
-#include <iostream>
-#include <winbgim.h>
-#include <stdlib.h>
-#include <windows.h>
-#include <mmsystem.h>
-#include <sstream>
 #include <string.h>
+#include <chrono>
+#include <thread>
 
 #include "joc.h"
 #include "tabla.h"
@@ -91,6 +86,7 @@ void ReguliJoc(text& text) {
 
 
 int main() {
+    char c[100];
     initwindow(800,600,"Solitar");
     setbkcolor(LIGHTGRAY);
     clearviewport();
@@ -188,6 +184,7 @@ int main() {
         } else if(isInsideButton(mousex(),mousey(),x4,y4,
         x4+textwidth(text.alege_un_alt_tabel), y4+textheight(text.alege_un_alt_tabel))){
             char c[100];
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
             SelectareFisierTabla(c, text);
             if (c[0] == '\0'){
                 ok = false;
